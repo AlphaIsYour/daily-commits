@@ -1,0 +1,247 @@
+body {
+  margin: 0;
+  background-color: #0d0f1c; /* Gelap dengan hint biru neon */
+  min-height: 100vh;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background-size: cover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: #1c2526; /* Abu-abu gelap cyberpunk */
+  --text-color: #e0fbfc; /* Putih neon */
+  --border-radius: 30px;
+}
+
+.card {
+  color: var(--text-color);
+  position: relative;
+  width: min(370px, 100%);
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card .author {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  padding: 10px;
+  gap: 20px;
+  width: 60%;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  height: 70px;
+  /* No hover effect */
+}
+
+.card .author img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.card .author .name {
+  font-weight: bold;
+}
+
+.card .image {
+  text-align: center;
+  background-color: var(--background-color);
+  border-top-right-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.card .image img {
+  transform: rotate(15deg);
+  width: 90%;
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.card .image img:hover {
+  transform: rotate(25deg) scale(1.1) translate(10px, -20px);
+  filter: brightness(1.2); /* Glow dikurangin, cuma brightness */
+}
+
+.card .info {
+  background-color: var(--background-color);
+  padding: 0 30px;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  text-align: center;
+}
+
+.card .info .name {
+  font-size: 1.7em;
+  animation: slideUp 0.5s ease-out;
+  text-shadow: 0 0 3px #ff00ff; /* Shadow neon dikurangin intensitasnya */
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card .price {
+  font-size: 1.2em;
+  color: #ff00ff; /* Magenta neon */
+  margin: 10px 0;
+  text-shadow: 0 0 3px #ff00ff; /* Shadow neon dikurangin */
+}
+
+.card .more {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-bottom: 30px;
+}
+
+.card .more .btns {
+  display: flex;
+  gap: 5px;
+}
+
+.card .more .btns button {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  background-color: #31313155;
+  border: 1px solid #00ffea; /* Border cyan neon */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card .more .btns .cart-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.card .more .btns .cart-btn:hover {
+  background-color: #ff00ff; /* Magenta neon */
+  box-shadow: 0 0 5px #ff00ff; /* Glow dikurangin */
+  transform: scale(1.1);
+}
+
+.card .more .btns .buyNow {
+  padding: 0 20px;
+  border-radius: 30px;
+}
+
+.card .more .btns .buyNow:hover {
+  background-color: #00ffea; /* Cyan neon */
+  box-shadow: 0 0 5px #00ffea; /* Glow dikurangin */
+  transform: translateY(-2px);
+}
+
+.card .options {
+  text-align: left;
+}
+
+.card .options ul {
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #ff00ff; /* Magenta border */
+  padding: 5px;
+  width: max-content;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  transition: transform 0.3s ease;
+}
+
+.card .options ul:hover {
+  transform: scale(1.05);
+}
+
+.card .options li {
+  background-color: var(--color);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  list-style: none;
+  transition: transform 0.3s ease;
+  /* Shadow neon dihapus dari sini */
+}
+
+.card .options li:hover {
+  transform: scale(1.2);
+}
+
+.card::before {
+  background-color: transparent;
+  content: "";
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: calc(40%);
+  height: 70px;
+  border-bottom-left-radius: calc(var(--border-radius) + 10px);
+  box-shadow: -30px 30px 0 var(--background-color);
+}
+
+.card::after {
+  background-color: var(--background-color);
+  backdrop-filter: blur(10px);
+  top: 0;
+  right: 0;
+  position: absolute;
+  width: calc(40% - 10px);
+  height: 60px;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: large;
+  animation: popIn 0.5s ease-out;
+  text-shadow: 0 0 3px #00ffea; /* Shadow neon dikurangin */
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@container style(--isType: popular) {
+  .card .info {
+    box-shadow: 0 10px 0 #ff00ff; /* Glow besar dihapus, cuma shadow solid */
+  }
+  .card::after {
+    content: " 🔥 Popular ";
+  }
+}
+
+@container style(--isType: new) {
+  .card .info {
+    box-shadow: 0 10px 0 #00ffea; /* Glow besar dihapus, cuma shadow solid */
+  }
+  .card::after {
+    content: " 🆕 NEW ";
+  }
+}
