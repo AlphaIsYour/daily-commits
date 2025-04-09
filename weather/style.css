@@ -1,117 +1,211 @@
-body{
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: 
-        linear-gradient(
-            to bottom,
-            #dcdcdc 50%,
-            #e9e9e9 50%
-        );
-    font-family: sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400&display=swap");
+
+:root {
+  --primary-color: #1e90ff;
+  --secondary-color: #00b894;
+  --accent-color: #ff9f43;
+  --background-color: #ecf0f1;
+  --text-color: #2d3436;
+  --error-color: #d63031;
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --glass-effect: rgba(255, 255, 255, 0.2);
 }
-*{
-    padding: 0;
-    margin: 0;
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  font-family: sans-serif;
+  color: var(--text-color);
 }
-main{
-    width: 300px;
-    height: max-content;
-    min-height: 300px;
-    background-color: #f7f7f7;
-    border-radius: 30px;
-    box-shadow: 0 30px 50px #5553;
-    padding: 30px;
-    box-sizing: border-box;
+
+main {
+  width: 320px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: var(--box-shadow);
+  padding: 25px;
+  position: relative;
+  overflow: hidden;
 }
-main form{
-    border: 1px solid #5552;
-    display: flex;
-    border-radius: 30px;
-    justify-content: space-between;
+
+main::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  pointer-events: none;
 }
-main form input, 
-main form button{
-    border: none;
-    background-color: transparent;
-    outline: none;
-    padding: 10px;
-    box-sizing: border-box;
+
+form {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #dfe4ea;
+  border-radius: 50px;
+  padding: 8px;
+  background: var(--glass-effect);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-main form i{
-    opacity: 0.7;
+
+form input,
+form button {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 12px;
 }
-main .result{
-    padding-top: 20px;
-    text-align: center;
+
+form button {
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-main .result .name{
-    font-weight: bold;
-    font-size: large;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+
+form button:hover {
+  transform: scale(1.1) rotate(5deg);
 }
-main .temperature img{
-    width: 150px;
-    filter: drop-shadow(0 10px 50px #555);
+
+form i {
+  color: var(--primary-color);
 }
-main .temperature figcaption{
-    font-size: 3em;
+
+#errorMessage {
+  color: var(--error-color);
+  margin-top: 15px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
-main .description{
-    padding: 10px 0 30px;
+
+.loading {
+  text-align: center;
+  font-size: 2.5em;
+  color: var(--primary-color);
+  animation: pulse 1.5s infinite;
 }
-main ul{
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+
+.weather-card {
+  text-align: center;
+  margin-top: 15px;
 }
-main li{
-    background-color: #f78a55;
-    color: #fff;
-    border-radius: 10px;
-    padding: 20px 10px;
-    background-image: linear-gradient(
-        to bottom,
-        transparent 50%,
-        #0003 50%
-    );
-    font-weight: bold;
-    font-size: small;
+
+.city-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.8em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
-main ul li i{
-    font-size: 2em;
-    margin: 20px 0;
-    display: block!important;
+
+.temperature img {
+  width: 180px;
+  filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3));
 }
-main li:nth-child(2){
-    background-color: #b56291;
+
+.temperature figcaption {
+  font-size: 3.5em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
-main li:nth-child(3){
-    background-color: #48567b;
+
+.description {
+  font-size: 1.3em;
+  margin: 15px 0;
+  font-family: "Open Sans", sans-serif;
 }
-main.error{
-    animation: errorEffect 0.3s linear 1;
+
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0;
 }
-@keyframes errorEffect{
-    0%{
-        transform: translate(10px, 5px)
-    }
-    25%{
-        transform: translate(-5px, 0)
-    }
-    50%{
-        transform: translate(8px, 2px)
-    }
-    75%{
-        transform: translate(-2px, 5px)
-    }
-    100%{
-        transform: translate(0, 0); 
-    }
+
+li {
+  background: linear-gradient(
+    145deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1em;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(3px);
+}
+
+li:hover {
+  transform: scale(1.1) translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+li:hover i {
+  animation: bounce 0.5s ease;
+}
+
+li i {
+  font-size: 2.5em;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+li span {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+li:nth-child(2) {
+  background: linear-gradient(
+    145deg,
+    var(--secondary-color),
+    var(--accent-color)
+  );
+}
+
+li:nth-child(3) {
+  background: linear-gradient(
+    145deg,
+    var(--accent-color),
+    var(--primary-color)
+  );
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animasi */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
